@@ -18,16 +18,16 @@ module.exports = function validateRegisterInput(data) {
         errors.name = 'Name field is required';
     }
 
-    if(Validator.isLength(data.password, {min:6, max:30})) {
+    if(!Validator.isLength(data.password, {min:6, max:30})) {
         errors.password = 'Password field is required';
     }
 
     if(Validator.isEmpty(data.password2)){
-        errors.name = 'Confirm Password field is required';
+        errors.password = 'Confirm Password field is required';
     }
 
-    if(Validator.equals(data.password, data.password2)){
-        errors.name = 'Confirm Password field is required';
+    if(!Validator.equals(data.password, data.password2)){
+        errors.password = 'Password does not match';
     }
 
     return {
